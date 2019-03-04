@@ -27,7 +27,6 @@ D:\practice\UserManagement\UserManagement\obj\Debug\UserManagement.csprojResolve
 D:\Work\HighZap\练习\WebApplication3\WebApplication3\bin\UserManagement.dll.config
 D:\Work\HighZap\练习\WebApplication3\WebApplication3\bin\UserManagement.dll
 D:\Work\HighZap\练习\WebApplication3\WebApplication3\bin\UserManagement.pdb
-D:\Work\HighZap\RookieTest\UserManagement\UserManagement\obj\Debug\UserManagement.csprojAssemblyReference.cache
 D:\Work\HighZap\RookieTest\UserManagement\UserManagement\obj\Debug\UserManagement.csproj.CoreCompileInputs.cache
 D:\Work\HighZap\RookieTest\UserManagement\UserManagement\obj\Debug\UserManagement.csproj.CopyComplete
 D:\Work\HighZap\RookieTest\UserManagement\UserManagement\obj\Debug\UserManagement.dll

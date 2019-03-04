@@ -26,6 +26,11 @@ namespace UserManagement
             return new ViewResult();
         }
 
+        public List<UsesrInfo> GetUsersByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public ActionResult InsertUser(string name, int Age, string Adress, string Email, string Sex)
         {
             //cttEntities Lists = new cttEntities();

@@ -14,6 +14,6 @@ namespace UserManagement
         ActionResult InsertUser(string name, int Age, string Adress, string Email, string Sex);
         ActionResult DelectUser(int userid);
         ActionResult UpdateUser(int userid, string name, int Age, string Adress, string Email, string Sex);
-
+        List<UsesrInfo> GetUsersByName(string name);
     }
 }
