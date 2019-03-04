@@ -1,0 +1,232 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <link href="~/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/themes/icon.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <script type="text/javascript">
+    $.ajax({
+        type:"get",
+        url:"/Home/ShowList"
+    })
+        //新增用户
+        function InsertUser() {
+            $("#dlg").dialog("open");
+            $("#IsUpdate").html("false");
+            var IsUpdate = $("#IsUpdate").html();
+            if (IsUpdate == "false") {
+                $("#name").textbox('setValue')
+                $("#age").textbox('setValue')
+                $("#adress").textbox('setValue')
+                $("#email").textbox('setValue')
+                
+               
+            }
+        }
+     
+        //删除用户
+      function DeleteUser() {
+          var row = $('#datagtid').datagrid('getSelected');//获取选中行的数据 
+          if (!row) { alert("请先选择一行");  }                         
+          $.ajax({
+             type:"post",
+             url:"/Home/DelectUser",
+             data:
+             {
+                 userid: row.UserID
+             },
+             success: function () {     
+                 alert("删除成功");
+             },
+             error: function () {
+                 alert("删除成功1");
+             }
+
+
+          })            
+        }
+        //更改用户
+       function UpdateUser() {
+            var row = $('#datagtid').datagrid('getSelected');//获取选中行的数据 
+            if (!row) { alert("请先选择一行"); }
+            $('#name').textbox('setValue', row.UserName);
+            $('#age').textbox('setValue', row.Age);
+            $('#adress').textbox('setValue', row.Address);
+            $('#email').textbox('setValue', row.Email);
+            $('#sex').textbox('setValue', row.Sex);
+            $("#IsUpdate").html("true");
+            setTimeout(function () {
+                //这里写时间到后执行的代码
+                $("#dlg").dialog("open");
+            }, 100);
+          
+            console.log(Name)
+           
+        }
+        //保存用户
+        function addMood() {
+
+           
+            var IsUpdate = $("#IsUpdate").html();
+            if (IsUpdate == "false") {   
+                var Name = $("#name").val();
+                var Age = $("#age").val();
+                var Adress = $("#adress").val();
+                var Email = $("#email").val();
+                var Sex = $("#sex").val();
+                $.ajax({
+                    type: "post",
+                    // contentType: "application/json:charset=utf-8",
+                    url: "/Home/InsertUser",
+                    data:
+                    {
+                        name: Name, Age: Age, Adress: Adress, Email: Email, sex: Sex
+                    },
+                    //dataType: 'json',
+                    success: function () {
+                        $("#dlg").dialog("close");
+                        alert("提交成功");
+                    },
+                    error: function () {
+                        alert("提交失败");
+                    }
+
+
+                })
+            } else {
+                var row = $('#datagtid').datagrid('getSelected');
+                var Name = $("#name").val();
+                var Age = $("#age").val();
+                var Adress = $("#adress").val();
+                var Email = $("#email").val();
+                var Sex = $("#sex").combobox("getValue");
+                $.ajax({
+                   type: "post",
+                   url: "/Home/UpdateUser",
+                   data:
+                   {
+                       userid: row.UserID,name: Name, Age: Age, Adress: Adress, Email: Email, Sex: Sex
+                   },
+                   success: function () {
+                       $("#dlg").dialog("close");
+                       alert("更改成功");
+                   },
+                   error: function () {
+                       alert("更改失败");
+                   }
+
+
+                })
+            }
+               
+        }
+    </script>
+
+
+    <title>ShowList</title>
+</head>
+<body>
+    <div>
+        @*/ Start：新增用户模块/*@
+        <div>
+            <a href="javascript:void(0)" class="easyui-linkbutton" style="margin-left:1300px; background-color:gainsboro" onclick="InsertUser()">
+                新增用户
+            </a>
+            <a  class="easyui-linkbutton"  onclick="DeleteUser()" style="margin-left:1400px; margin-top:-57px;  background-color:gainsboro"  >
+                删除用户
+            </a>
+            <a class="easyui-linkbutton" onclick="UpdateUser()" style="margin-left:1200px; margin-top:-94px;  background-color:gainsboro">
+                更改用户
+            </a>
+            <div id="dlg" closed=true class="easyui-dialog" title="新增用户" data-options="iconCls:'icon-save'" style="width:400px;height:400px;padding:10px">
+                @*新增用户表单*@
+                <div id="IsUpdate" style="display:none"></div>
+                <table cellpadding="5">
+                    <tr>
+                        <td>用户姓名</td>
+                        <td><input class="easyui-textbox" type="text" id="name" data-options="required:true"></td>
+                    </tr>
+                    <tr>
+                        <td>年龄:</td>
+                        <td><input class="easyui-numberbox" type="text" id="age" data-options="required:true"></td>
+                    </tr>
+                    <tr>
+                        <td>地址:</td>
+                        <td><input class="easyui-textbox" type="text"  id="adress" data-options="required:true"/></td>
+                    </tr>
+                    <tr>
+                        <td>邮箱:</td>
+                        <td><input class="easyui-textbox" id="email" data-options="multiline:true" style="height:60px"></td>
+                    </tr>
+                    <tr>
+                        <td>性别:</td>
+                        <td>
+                            <select class="easyui-combobox" id="sex" style="width:80px;">
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" class="easyui-linkbutton"  onclick="addMood()">保存</a>
+                            
+                    </tr>
+                </table>
+
+
+            </div>
+
+
+        </div>
+        @*/END：新增用户模块/*@
+        <table class="easyui-datagrid"  id="datagtid" >
+            <thead>
+                <tr>
+                    <th data-options="field:'UserID',width:80">序号</th>
+                    <th data-options="field:'UserName',width:100">姓名</th>
+                    <th data-options="field:'Age',width:80,align:'right'">年龄</th>
+                    <th data-options="field:'Address',width:80,align:'right'">地址</th>
+                    <th data-options="field:'Email',width:250">邮箱</th>
+                    <th data-options="field:'Sex',width:60,align:'center'">性别</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var list = ViewBag.list;
+                    foreach (var item in list)
+                    {
+                        <tr>
+                            <td> @item.UserID</td>
+                            <td> @item.UserName</td>
+                            <td> @item.Age</td>
+                            <td> @item.Address</td>
+                            <td> @item.Email</td>
+                            <td> @item.Sex</td>
+                        </tr>
+                    }
+                }
+
+
+            </tbody>
+        </table>
+       
+    </div>
+    <script type="text/javascript">
+
+            
+       
+                
+          
+    </script>
+</body>
+</html>

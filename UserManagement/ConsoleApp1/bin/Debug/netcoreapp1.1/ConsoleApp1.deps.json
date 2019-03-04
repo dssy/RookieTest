@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v1.1",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v1.1": {
+      "consoleapp1/1.0.0": {
+        "dependencies": {
+          "UserManagement": "1.0.0"
+        },
+        "runtime": {
+          "ConsoleApp1.dll": {}
+        }
+      },
+      "usermanagement/1.0.0": {
+        "runtime": {
+          "UserManagement.dll": {}
+        },
+        "resources": {
+          "zh-Hans/System.Web.Mvc.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hans/EntityFramework.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hans/System.Web.WebPages.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hans/System.Web.WebPages.Razor.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hans/System.Web.Razor.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hans/System.Web.WebPages.Deployment.resources.dll": {
+            "locale": "zh-Hans"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "consoleapp1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "usermanagement/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

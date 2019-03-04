@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MeasureIt.Web.Mvc.Autofac</name>
+    </assembly>
+    <members>
+        <member name="T:MeasureIt.Web.Mvc.Autofac.AutofacControllerActionInvoker">
+            <summary>
+            <see cref="T:System.Web.Mvc.ControllerActionInvoker"/> for use with <see cref="T:Autofac.IContainer"/>.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.AutofacControllerActionInvoker.#ctor(Autofac.ILifetimeScope)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="scope"><see cref="T:Autofac.ILifetimeScope"/> is automatically registered by
+            Autofac, so no need to register again.</param>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.AutofacControllerActionInvoker.GetFilters(System.Web.Mvc.ControllerContext,System.Web.Mvc.ActionDescriptor)">
+            <summary>
+            Returns the <see cref="T:System.Web.Mvc.FilterInfo"/> corresponding to the
+            <paramref name="controllerContext"/> or <paramref name="actionDescriptor"/>.
+            </summary>
+            <param name="controllerContext"></param>
+            <param name="actionDescriptor"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MeasureIt.Web.Mvc.Autofac.RegistrationExtensionMethods">
+            <summary>
+            Registration extension methods.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.RegistrationExtensionMethods.RegisterService``2(Autofac.ContainerBuilder)">
+            <summary>
+            Registers the <typeparamref name="TService"/> as the
+            <typeparamref name="TInterface"/>.
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <typeparam name="TService"></typeparam>
+            <param name="builder"></param>
+            <returns>Returns the registration or further consideration.</returns>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.RegistrationExtensionMethods.RegisterRequiredServices``1(Autofac.ContainerBuilder)">
+            <summary>
+            Registers the Required Services with the <paramref name="builder"/>.
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.RegistrationExtensionMethods.RegisterRequiredServices``2(Autofac.ContainerBuilder)">
+            <summary>
+            Registers the Required Services with the <paramref name="builder"/>.
+            </summary>
+            <typeparam name="TInvoker"></typeparam>
+            <typeparam name="TResolver"></typeparam>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.RegistrationExtensionMethods.EnableMvcMeasurements``2(Autofac.ContainerBuilder,System.Func{MeasureIt.Discovery.InstrumentationDiscoveryOptions},System.Action{MeasureIt.Discovery.InstrumentationDiscoveryOptions})">
+            <summary>
+            Enables runtime interception using <typeparamref name="TService"/> via
+            <paramref name="builder"/>, and using <see cref="T:MeasureIt.Web.Mvc.Interception.MvcActionMeasurementProvider"/> for
+            provider.
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <typeparam name="TService"></typeparam>
+            <param name="builder"></param>
+            <param name="createOptions"></param>
+            <param name="optionsActivated"></param>
+            <returns></returns>
+            <see cref="M:MeasureIt.Web.Mvc.Autofac.RegistrationExtensionMethods.EnableMvcMeasurements``4(Autofac.ContainerBuilder,System.Func{``2},System.Action{``2})"/>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.RegistrationExtensionMethods.EnableMvcMeasurements``3(Autofac.ContainerBuilder,System.Func{``2},System.Action{``2})">
+            <summary>
+            Enables runtime interception using <typeparamref name="TService"/> via
+            <paramref name="builder"/>, and using <see cref="T:MeasureIt.Web.Mvc.Interception.MvcActionMeasurementProvider"/> for
+            provider.
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <typeparam name="TService"></typeparam>
+            <typeparam name="TOptions"></typeparam>
+            <param name="builder"></param>
+            <param name="createOptions"></param>
+            <param name="optionsActivated"></param>
+            <returns></returns>
+            <see cref="M:MeasureIt.Web.Mvc.Autofac.RegistrationExtensionMethods.EnableMvcMeasurements``4(Autofac.ContainerBuilder,System.Func{``2},System.Action{``2})"/>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.RegistrationExtensionMethods.EnableMvcMeasurements``4(Autofac.ContainerBuilder,System.Func{``2},System.Action{``2})">
+            <summary>
+            Enables runtime interception using <typeparamref name="TService"/> via
+            <paramref name="builder"/>.
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <typeparam name="TService"></typeparam>
+            <typeparam name="TOptions"></typeparam>
+            <typeparam name="TProvider"></typeparam>
+            <param name="builder"></param>
+            <param name="createOptions"></param>
+            <param name="optionsActivated"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MeasureIt.Web.Mvc.Autofac.IAutofacControllerActionInvoker">
+            <summary>
+            <see cref="T:System.Web.Mvc.IActionInvoker"/> for use with <see cref="T:Autofac.IContainer"/>.
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Web.Mvc.Autofac.InternalExtensionMethods.PublicNonPublicInstance">
+            <summary>
+            <see cref="F:System.Reflection.BindingFlags.Public"/>, <see cref="F:System.Reflection.BindingFlags.NonPublic"/>, <see cref="F:System.Reflection.BindingFlags.Instance"/>
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.InternalExtensionMethods.InjectObject``1(``0,System.Object,System.Reflection.BindingFlags)">
+            <summary>
+            Injects the <paramref name="obj"/> corresponding with the <see cref="T:System.Attribute"/>.
+            </summary>
+            <typeparam name="TContext"></typeparam>
+            <param name="context"></param>
+            <param name="obj"></param>
+            <param name="baseFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Autofac.InternalExtensionMethods.InjectObject``2(``0,System.Object,System.Reflection.BindingFlags)">
+            <summary>
+            Injects the <paramref name="obj"/> corresponding with the
+            <typeparamref name="TAttribute"/>.
+            </summary>
+            <typeparam name="TContext"></typeparam>
+            <typeparam name="TAttribute"></typeparam>
+            <param name="context"></param>
+            <param name="obj"></param>
+            <param name="baseFlags"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

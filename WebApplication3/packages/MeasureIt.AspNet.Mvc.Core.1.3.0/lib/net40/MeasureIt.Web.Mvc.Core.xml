@@ -1,0 +1,521 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MeasureIt.Web.Mvc.Core</name>
+    </assembly>
+    <members>
+        <member name="T:MeasureIt.IMvcMeasurePerformanceAttribute">
+            <summary>
+            Instrumentation discovery service for web purposes.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.IMvcMeasurePerformanceAttribute.Boundary">
+            <summary>
+            Gets or sets the Start and Stop Boundary <see cref="T:MeasureIt.Discovery.MeasurementBoundary"/>.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.IMvcMeasurePerformanceAttribute.StartBoundary">
+            <summary>
+            Gets the Start <see cref="T:MeasureIt.Discovery.MeasurementBoundary"/>.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.IMvcMeasurePerformanceAttribute.StopBoundary">
+            <summary>
+            Gets the Stop <see cref="T:MeasureIt.Discovery.MeasurementBoundary"/>.
+            </summary>
+        </member>
+        <member name="T:MeasureIt.Web.Mvc.Collections.IStatefulStorageDictionary">
+            <summary>
+            There were optimizations that took place with Mvc that consequently require some extra
+            effort in order to do some sort of reasonable stateful caching.
+            </summary>
+            <see cref="!:http://channel9.msdn.com/series/mvcconf/mvcconf-2011-brad-wilson-advanced-mvc-3">
+            Mr. Wilson purports to have "invented" stateful storage, and I certainly thank him for the
+            inspiration. I did some refinements in order to better meet the needs of this project.</see>
+            <see cref="!:http://bradwilson.typepad.com/blog/2010/07/aspnet-mvc-filters-and-statefulness.html"/>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.IStatefulStorage.Get``1(System.String)">
+            <summary>
+            Returns the instance of the typed value by <paramref name="name"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.IStatefulStorage.GetOrAdd``1(System.String,System.Func{``0})">
+            <summary>
+            Returns the instance of the typed value by <paramref name="name"/>. If the value
+            cannot be found, creates a new one by the <paramref name="factory"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <param name="factory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.IStatefulStorage.TryRemove(System.String)">
+            <summary>
+            Tries to Remove the item corresponding to the <paramref name="name"/>.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="F:MeasureIt.Web.Mvc.StatefulStorage.DefaultMode">
+            <summary>
+            <see cref="F:MeasureIt.Web.Mvc.StatefulStorageMode.PerRequest"/>
+            </summary>
+        </member>
+        <member name="T:MeasureIt.Web.Mvc.StatefulStorageMode">
+            <summary>
+            <see cref="T:MeasureIt.Web.Mvc.StatefulStorage"/> mode.
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Web.Mvc.StatefulStorageMode.PerApplication">
+            <summary>
+            PerApplication
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Web.Mvc.StatefulStorageMode.PerRequest">
+            <summary>
+            PerRequest
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Web.Mvc.StatefulStorageMode.PerSession">
+            <summary>
+            PerSession
+            </summary>
+        </member>
+        <member name="T:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase">
+            <summary>
+            Measurement filter base class.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.Descriptor">
+            <summary>
+            Gets the Descriptor.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.ReadOnly">
+            <summary>
+            Sets whether <see cref="P:System.Diagnostics.PerformanceCounter.ReadOnly"/>. Leaving unspecified assumes
+            read-only.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.InstanceLifetime">
+            <summary>
+            Sets the InstanceLifetime.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.PublishCounters">
+            <summary>
+            Sets whether to PublishCounters.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.ThrowPublishErrors">
+            <summary>
+            Sets whether to ThrowPublishErrors.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.PublishEvent">
+            <summary>
+            Sets whether to PublishEvent.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.SampleRate">
+            <summary>
+            Sets the SampleRate.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.Boundary">
+            <summary>
+            Sets the StartBoundary <see cref="T:MeasureIt.Discovery.MeasurementBoundary"/>.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.StartBoundary">
+            <summary>
+            Sets the Start <see cref="T:MeasureIt.Discovery.MeasurementBoundary"/>.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.StopBoundary">
+            <summary>
+            Sets the Stop <see cref="T:MeasureIt.Discovery.MeasurementBoundary"/>.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Filters.MeasurementFilterAttributeBase.#ctor(System.Type,System.Type,System.Type[])">
+            <summary>
+            Protected Constructor
+            </summary>
+            <param name="categoryType"></param>
+            <param name="adapterType"></param>
+            <param name="otherAdapterTypes"></param>
+        </member>
+        <member name="T:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute">
+            <summary>
+            Performance measurement filter attribute.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute.DependencyResolver">
+            <summary>
+            Gets or sets the DependencyResolver.
+            </summary>
+            <remarks>We do not have many great choices when it comes to relaying interfaces such
+            as this. Instead we will need to extend an <see cref="T:System.Web.Mvc.ControllerActionInvoker"/> in
+            order to visit the filters with the appropriate resolutions. The documented example
+            makes use of StructureMap, but a similar thing should work for both Castle Windsor
+            as well as for Autofac.</remarks>
+            <see cref="!:http://lostechies.com/jimmybogard/2010/05/03/dependency-injection-in-asp-net-mvc-filters/" />
+        </member>
+        <member name="F:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute.MeasurementProviderKey">
+            <summary>
+            "mvc-measurement-provider"
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute.MeasurementContextKey">
+            <summary>
+            "mvc-measurement-context"
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute.ActionDescriptorKey">
+            <summary>
+            "action-descriptor-key"
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute.#ctor(System.Type,System.Type,System.Type[])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="categoryType"></param>
+            <param name="adapterType"></param>
+            <param name="otherAdapterTypes"></param>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            Action executing event handler.
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>
+            Action executed event handler.
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute.OnResultExecuting(System.Web.Mvc.ResultExecutingContext)">
+            <summary>
+            Result executing event handler.
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute.OnResultExecuted(System.Web.Mvc.ResultExecutedContext)">
+            <summary>
+            Result executed event handler.
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:MeasureIt.Web.Mvc.Interception.MvcActionMeasurementProvider">
+            <summary>
+            Measurement Provider for web purposes.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Web.Mvc.Interception.MvcActionMeasurementProvider.DiscoveryService">
+            <summary>
+            Gets the DiscoveryService.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Interception.MvcActionMeasurementProvider.#ctor(MeasureIt.Discovery.IInstrumentationDiscoveryOptions,MeasureIt.Discovery.IMvcActionInstrumentationDiscoveryService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="options"></param>
+            <param name="discoveryService"></param>
+        </member>
+        <member name="M:MeasureIt.Web.Mvc.Interception.MvcActionMeasurementProvider.GetMeasurementContext(System.Type,System.Reflection.MethodInfo)">
+            <summary>
+            Returns the Measurement Context given <paramref name="targetType"/> and
+            <paramref name="method"/>.
+            </summary>
+            <param name="targetType"></param>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MeasureIt.IMvcPerformanceMeasurementDescriptor">
+            <summary>
+            Establishes a <see cref="T:MeasureIt.IPerformanceMeasurementDescriptor"/> including
+            <see cref="T:MeasureIt.Discovery.MeasurementBoundary"/> pair.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.IMvcPerformanceMeasurementDescriptor.Boundary">
+            <summary>
+            Gets the Boundary <see cref="T:MeasureIt.Discovery.MeasurementBoundaryPair"/>.
+            </summary>
+        </member>
+        <member name="T:MeasureIt.MvcPerformanceMeasurementDescriptor">
+            <summary>
+            <see cref="T:MeasureIt.PerformanceMeasurementDescriptor"/> for use with the Mvc framework.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.MvcPerformanceMeasurementDescriptor.Boundary">
+            <summary>
+            Gets the Boundary <see cref="T:MeasureIt.Discovery.MeasurementBoundaryPair"/>.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.MvcPerformanceMeasurementDescriptor.#ctor(System.Type,System.Type,System.Type[])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="categoryType"></param>
+            <param name="adapterType"></param>
+            <param name="otherAdapterTypes"></param>
+        </member>
+        <member name="M:MeasureIt.MvcPerformanceMeasurementDescriptor.#ctor(System.String,System.Type,System.Type,System.Type[])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="prefix"></param>
+            <param name="categoryType"></param>
+            <param name="adapterType"></param>
+            <param name="otherAdapterTypes"></param>
+        </member>
+        <member name="T:MeasureIt.Discovery.Agents.IMeasurementFilterDiscoveryAgent`1">
+            <summary>
+            Measurement filter discovery agent.
+            </summary>
+            <typeparamref name="TAttribute"/>
+        </member>
+        <member name="T:MeasureIt.Discovery.Agents.IMeasurementFilterDiscoveryAgent">
+            <summary>
+            Measurement filter discovery agent.
+            </summary>
+        </member>
+        <member name="T:MeasureIt.Discovery.Agents.MeasurementFilterDiscoveryAgent">
+            <summary>
+            Measurement filter discovery agent regarding
+            <see cref="T:MeasureIt.IMvcPerformanceMeasurementDescriptor"/> and
+            <see cref="T:MeasureIt.Web.Mvc.Filters.PerformanceMeasurementFilterAttribute"/> concerns.
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MvcInstrumentationDiscoveryOptions.Bases.Base">
+            <summary>
+            Base (1)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MvcInstrumentationDiscoveryOptions.Shifts.Begin">
+            <summary>
+            Begin (0)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MvcInstrumentationDiscoveryOptions.Shifts.End">
+            <summary>
+            End (1)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MvcInstrumentationDiscoveryOptions.Shifts.Action">
+            <summary>
+            Action (2)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MvcInstrumentationDiscoveryOptions.Shifts.Result">
+            <summary>
+            Result (3)
+            </summary>
+        </member>
+        <member name="T:MeasureIt.Discovery.MeasurementBoundary">
+            <summary>
+            Represents the Measurement Boundary. These are specified in pairs.
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundary.Begin">
+            <summary>
+            Begin (0x1)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundary.End">
+            <summary>
+            End (0x2)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundary.Action">
+            <summary>
+            Action (0x4)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundary.Result">
+            <summary>
+            Result (0x8)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundary.BeginAction">
+            <summary>
+            BeginAction (0x5)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundary.EndAction">
+            <summary>
+            BeginAction (0x6)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundary.BeginResult">
+            <summary>
+            BeginResult (0x9)
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundary.EndResult">
+            <summary>
+            BeginResult (0xa)
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Discovery.MeasurementBoundaryExtensionMethods.TryHas(MeasureIt.Discovery.MeasurementBoundary,MeasureIt.Discovery.MeasurementBoundary)">
+            <summary>
+            Returns whether <paramref name="value"/> Has the <paramref name="mask"/>.
+            </summary>
+            <param name="value"></param>
+            <param name="mask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MeasureIt.Discovery.MeasurementBoundaryExtensionMethods.TryDoesNotHave(MeasureIt.Discovery.MeasurementBoundary,MeasureIt.Discovery.MeasurementBoundary)">
+            <summary>
+            Returns whether <paramref name="value"/> DoesNotHave the <paramref name="mask"/>.
+            </summary>
+            <param name="value"></param>
+            <param name="mask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MeasureIt.Discovery.MeasurementBoundaryExtensionMethods.VerifyHaving(MeasureIt.Discovery.MeasurementBoundary,MeasureIt.Discovery.MeasurementBoundary)">
+            <summary>
+            Verifies whether <paramref name="value"/> Has the <paramref name="mask"/>.
+            </summary>
+            <param name="value"></param>
+            <param name="mask"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="value"/>
+            <see cref="M:MeasureIt.Discovery.MeasurementBoundaryExtensionMethods.TryDoesNotHave(MeasureIt.Discovery.MeasurementBoundary,MeasureIt.Discovery.MeasurementBoundary)"/> the <paramref name="mask"/>.</exception>
+        </member>
+        <member name="M:MeasureIt.Discovery.MeasurementBoundaryExtensionMethods.VerifyNotHaving(MeasureIt.Discovery.MeasurementBoundary,MeasureIt.Discovery.MeasurementBoundary)">
+            <summary>
+            Verifies whether <paramref name="value"/> DoesNotHave the <paramref name="mask"/>.
+            </summary>
+            <param name="value"></param>
+            <param name="mask"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="value"/>
+            <see cref="M:MeasureIt.Discovery.MeasurementBoundaryExtensionMethods.TryHas(MeasureIt.Discovery.MeasurementBoundary,MeasureIt.Discovery.MeasurementBoundary)"/> the <paramref name="mask"/>.</exception>
+        </member>
+        <member name="M:MeasureIt.Discovery.MeasurementBoundaryExtensionMethods.VerifyHasOne(MeasureIt.Discovery.MeasurementBoundary,MeasureIt.Discovery.MeasurementBoundary[])">
+            <summary>
+            Verifies that <paramref name="value"/> has one of the <paramref name="masks"/>.
+            </summary>
+            <param name="value"></param>
+            <param name="masks"></param>
+            <returns></returns>
+            <remarks>This is a sufficient verification. No need to go checking having or not
+            having all.</remarks>
+        </member>
+        <member name="M:MeasureIt.Discovery.MeasurementBoundaryExtensionMethods.VerifyBoundaries(System.Collections.Generic.IEnumerable{MeasureIt.Discovery.MeasurementBoundary},MeasureIt.Discovery.MeasurementBoundary@,MeasureIt.Discovery.MeasurementBoundary@)">
+            <summary>
+            Verifies that the <paramref name="values"/> has exactly two items and returns the
+            first as <paramref name="start"/> and the second as <paramref name="stop"/>.
+            </summary>
+            <param name="values"></param>
+            <param name="start"></param>
+            <param name="stop"></param>
+        </member>
+        <member name="T:MeasureIt.Discovery.MeasurementBoundaryPair">
+            <summary>
+            Represents a Measurement Boundary pair.
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundaryPair.DefaultStart">
+            <summary>
+            <see cref="F:MeasureIt.Discovery.MeasurementBoundary.Begin"/> | <see cref="F:MeasureIt.Discovery.MeasurementBoundary.Action"/>
+            </summary>
+        </member>
+        <member name="F:MeasureIt.Discovery.MeasurementBoundaryPair.DefaultStop">
+            <summary>
+            <see cref="F:MeasureIt.Discovery.MeasurementBoundary.End"/> | <see cref="F:MeasureIt.Discovery.MeasurementBoundary.Action"/>
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Discovery.MeasurementBoundaryPair.Start">
+            <summary>
+            Gets the Start Boundary of the Measurement. Defaults to <see cref="F:MeasureIt.Discovery.MeasurementBoundaryPair.DefaultStart"/>.
+            </summary>
+        </member>
+        <member name="P:MeasureIt.Discovery.MeasurementBoundaryPair.Stop">
+            <summary>
+            Gets the Stop Boundary of the Measurement. Defaults to <see cref="F:MeasureIt.Discovery.MeasurementBoundaryPair.DefaultStop"/>.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Discovery.MeasurementBoundaryPair.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Discovery.MeasurementBoundaryPair.#ctor(MeasureIt.Discovery.MeasurementBoundary,MeasureIt.Discovery.MeasurementBoundary)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="start"></param>
+            <param name="stop"></param>
+        </member>
+        <member name="M:MeasureIt.Discovery.MeasurementBoundaryPair.Set(MeasureIt.Discovery.MeasurementBoundary,MeasureIt.Discovery.MeasurementBoundary)">
+            <summary>
+            Sets the <paramref name="start"/> and <paramref name="stop"/> values.
+            </summary>
+            <param name="start"></param>
+            <param name="stop"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">Thrown when there is any problem with either
+            of the <paramref name="start"/> or <paramref name="stop"/> parameters.</exception>
+        </member>
+        <member name="T:MeasureIt.Discovery.MvcActionInstrumentationDiscoveryService">
+            <summary>
+            Instrumentation discovery service for web purposes.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Discovery.MvcActionInstrumentationDiscoveryService.#ctor(MeasureIt.Discovery.IInstrumentationDiscoveryOptions)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="discoveryOptions"></param>
+        </member>
+        <member name="P:MeasureIt.Discovery.MvcActionInstrumentationDiscoveryService.Measurements">
+            <summary>
+            Gets the Measurements discovered by the service.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Discovery.MvcActionInstrumentationDiscoveryService.OnDiscover">
+            <summary>
+            Discover handler.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.Discovery.MvcActionInstrumentationDiscoveryService.GetInstallerContext">
+            <summary>
+            Returns an instance of <see cref="T:MeasureIt.Contexts.IInstallerContext"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MeasureIt.Discovery.IMvcActionInstrumentationDiscoveryService">
+            <summary>
+            Instrumentation discovery service for web purposes.
+            </summary>
+        </member>
+        <member name="M:MeasureIt.CollectionExtensionMethods.None``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns that None of the <paramref name="values"/> meet the conditions described
+            in the <paramref name="predicate"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MeasureIt.MvcExtensionMethods.TryRemove(System.Collections.Generic.IDictionary{System.String,System.Object},System.String)">
+            <summary>
+            Tries to <see cref="M:System.Collections.Generic.IDictionary`2.Remove(`0)"/> the item corresponding
+            with <paramref name="key"/>. Tests whether
+            <see cref="M:System.Collections.Generic.IDictionary`2.ContainsKey(`0)"/> prior to removing.
+            </summary>
+            <param name="dictionary"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

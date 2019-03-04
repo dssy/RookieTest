@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kingdom.Web.Mvc.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Kingdom.Web.Mvc.InjectAttribute">
+            <summary>
+            Decorate the properties you want Injected by the Castle Windsor, Autofac, or which ever
+            other container property resolution strategy. At the moment this applies only for Filters
+            that require injection.
+            </summary>
+        </member>
+        <member name="T:Kingdom.Web.Mvc.IInjectionAttribute">
+            <summary>
+            Whichever <see cref="T:System.Attribute"/> you use, should implement <see cref="T:Kingdom.Web.Mvc.IInjectionAttribute"/>.
+            </summary>
+        </member>
+    </members>
+</doc>
